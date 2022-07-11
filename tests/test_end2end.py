@@ -1,11 +1,10 @@
-import pytest
 from selenium.webdriver.common.by import By
+from utilities.BaseClass import BaseClass
 
 
-@pytest.mark.usefixtures('setup')
-class TestOne:
+class TestOne(BaseClass):
 
-    def test_end2end(self, setup):
+    def test_end2end(self):
 
         username = self.driver.find_element(By.NAME, 'username')
         username.send_keys('john')
