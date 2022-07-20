@@ -15,10 +15,9 @@ class TestOne(BaseClass):
         login_page = LoginPage(self.driver)
         login_page.username_entry().send_keys('john')
         login_page.password_entry().send_keys('demo')
-        login_page.submit_button().click()
 
         # Accounts Overview Page
-        accounts_overview_page = AccountsOverviewPage(self.driver)
+        accounts_overview_page = login_page.submit_button()  # clicks the button and returns AccountsOverviewPage object
         headers = accounts_overview_page.get_headers()
         i = -1
         for header in headers:
@@ -29,10 +28,9 @@ class TestOne(BaseClass):
                 assert header.text == 'Balance*'
             elif i == 2:
                 assert header.text == 'Available Amount'
-        accounts_overview_page.open_new_account_link().click()
 
         # Open New Accounts Page
-        new_account_page = OpenNewAccountPage(self.driver)
+        new_account_page = accounts_overview_page.open_new_account_link()
 
         # Select New Account Type
         selection_new = Select(new_account_page.select_account_type())
@@ -56,11 +54,9 @@ class TestOne(BaseClass):
 
         # Go to Transfer Funds page
         time.sleep(1)
-        new_account_page.transfer_funds().click()
+        transfer_funds_page = new_account_page.transfer_funds()
         time.sleep(1)
-
         # Transfer funds ($50)
-        transfer_funds_page = TransferFundsPage(self.driver)
         transfer_funds_page.input_transfer_amount().send_keys(50)
         selection_from = Select(transfer_funds_page.select_from_account())
 

@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 
+from pageObjects.AccountsOverviewPage import AccountsOverviewPage
+
 
 class LoginPage:
 
@@ -17,4 +19,5 @@ class LoginPage:
         return self.driver.find_element(*LoginPage.password)
 
     def submit_button(self):
-        return self.driver.find_element(*LoginPage.submit)
+        self.driver.find_element(*LoginPage.submit).click()
+        return AccountsOverviewPage(self.driver)

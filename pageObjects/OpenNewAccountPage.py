@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 
+from pageObjects.TransferFundsPage import TransferFundsPage
+
 
 class OpenNewAccountPage:
 
@@ -29,4 +31,5 @@ class OpenNewAccountPage:
         return self.driver.find_element(*OpenNewAccountPage.new_account_number)
 
     def transfer_funds(self):
-        return self.driver.find_element(*OpenNewAccountPage.transfer_funds_link)
+        self.driver.find_element(*OpenNewAccountPage.transfer_funds_link).click()
+        return TransferFundsPage(self.driver)
