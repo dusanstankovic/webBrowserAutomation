@@ -32,12 +32,10 @@ class TestOne(BaseClass):
         new_account_page = accounts_overview_page.open_new_account_link()
 
         # Select New Account Type
-        selection_new = Select(new_account_page.select_account_type())
-        selection_new.select_by_visible_text('SAVINGS')
+        self.select_by_visible_text(new_account_page.select_account_type(), 'SAVINGS')
 
         # Deposit to current account, select account with index 1 (second on the list)
-        selection_current = Select(new_account_page.select_current_account())
-        selection_current.select_by_index(0)
+        self.select_by_index(new_account_page.select_current_account(), 0)
 
         # Submit new account form
         time.sleep(1)
@@ -57,10 +55,9 @@ class TestOne(BaseClass):
         time.sleep(1)
         # Transfer funds ($50)
         transfer_funds_page.input_transfer_amount().send_keys(50)
-        selection_from = Select(transfer_funds_page.select_from_account())
 
         # Transfer funds from newly created account
-        selection_from.select_by_value(new_account_number)
+        self.select_by_value(transfer_funds_page.select_from_account(), new_account_number)
         time.sleep(1)
         transfer_funds_page.transfer_submit().click()
         time.sleep(1)
