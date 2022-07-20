@@ -11,6 +11,7 @@ class OpenNewAccountPage:
     submit_button = (By.XPATH, '//input[@value="Open New Account"]')
     confirmation_title = (By.CSS_SELECTOR, '.title')
     new_account_number = (By.XPATH, '//a[@id="newAccountId"]')
+    transfer_funds_link = (By.PARTIAL_LINK_TEXT, 'Transfer')
 
     def select_account_type(self):
         return self.driver.find_element(*OpenNewAccountPage.new_account_selection)
@@ -26,3 +27,6 @@ class OpenNewAccountPage:
 
     def get_new_account_number(self):
         return self.driver.find_element(*OpenNewAccountPage.new_account_number)
+
+    def transfer_funds(self):
+        return self.driver.find_element(*OpenNewAccountPage.transfer_funds_link)

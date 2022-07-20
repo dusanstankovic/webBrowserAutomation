@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions
 from pageObjects.AccountsOverviewPage import AccountsOverviewPage
 from pageObjects.LoginPage import LoginPage
 from pageObjects.OpenNewAccountPage import OpenNewAccountPage
+from pageObjects.TransferFundsPage import TransferFundsPage
 from utilities.BaseClass import BaseClass
 
 
@@ -57,3 +58,20 @@ class TestOne(BaseClass):
         # Fetch new account number
         new_account_number = new_account_page.get_new_account_number().text
 
+        # Go to Transfer Funds page
+        new_account_page.transfer_funds().click()
+
+        # Transfer funds ($50)
+        transfer_funds_page = TransferFundsPage(self.driver)
+        transfer_funds_page.input_transfer_amount().send_keys(50)
+        selection_from = Select(transfer_funds_page.select_from_account())
+
+        # Transfer funds from newly created account
+        selection_from.select_by_value(new_account_number)
+        transfer_funds_page.transfer_submit_button().click()
+
+        # Transfer confirmation message
+        assert transfer_funds_page.transfer_confirmation().text == 'Transfer Complete!'
+
+        # Logout
+        transfer_funds_page.logout().click()
