@@ -1,9 +1,8 @@
 import time
+
 from selenium.webdriver.support.select import Select
-from pageObjects.AccountsOverviewPage import AccountsOverviewPage
+
 from pageObjects.LoginPage import LoginPage
-from pageObjects.OpenNewAccountPage import OpenNewAccountPage
-from pageObjects.TransferFundsPage import TransferFundsPage
 from utilities.BaseClass import BaseClass
 
 
