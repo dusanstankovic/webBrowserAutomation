@@ -1,9 +1,5 @@
 import time
-
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
-
 from pageObjects.AccountsOverviewPage import AccountsOverviewPage
 from pageObjects.LoginPage import LoginPage
 from pageObjects.OpenNewAccountPage import OpenNewAccountPage
@@ -59,7 +55,9 @@ class TestOne(BaseClass):
         new_account_number = new_account_page.get_new_account_number().text
 
         # Go to Transfer Funds page
+        time.sleep(1)
         new_account_page.transfer_funds().click()
+        time.sleep(1)
 
         # Transfer funds ($50)
         transfer_funds_page = TransferFundsPage(self.driver)
@@ -68,10 +66,13 @@ class TestOne(BaseClass):
 
         # Transfer funds from newly created account
         selection_from.select_by_value(new_account_number)
-        transfer_funds_page.transfer_submit_button().click()
+        time.sleep(1)
+        transfer_funds_page.transfer_submit().click()
+        time.sleep(1)
 
         # Transfer confirmation message
-        assert transfer_funds_page.transfer_confirmation().text == 'Transfer Complete!'
+        time.sleep(30)
+        assert transfer_funds_page.transfer_confirmation_message().text == 'Transfer Complete!'
 
         # Logout
         transfer_funds_page.logout().click()

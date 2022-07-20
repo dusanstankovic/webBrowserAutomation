@@ -8,7 +8,7 @@ class TransferFundsPage:
 
     transfer_amount = (By.XPATH, '//input[@id="amount"]')
     transfer_from_account = (By.ID, 'fromAccountId')
-    transfer_submit_button = (By.CLASS_NAME, 'button')
+    transfer_submit_button = (By.XPATH, '//input[@value="Transfer"]')
     transfer_confirmation = (By.XPATH, '//h1[@class="title"]')
     logout_link = (By.LINK_TEXT, 'Log Out')
 
