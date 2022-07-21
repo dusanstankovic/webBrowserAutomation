@@ -1,7 +1,5 @@
 import time
 
-from selenium.webdriver.support.select import Select
-
 from pageObjects.LoginPage import LoginPage
 from utilities.BaseClass import BaseClass
 
@@ -10,8 +8,12 @@ class TestOne(BaseClass):
 
     def test_end2end(self):
 
+        # Get logger
+        log = self.get_logger()
+
         # Login Page
         login_page = LoginPage(self.driver)
+        log.info("Entering credentials")
         login_page.username_entry().send_keys('john')
         login_page.password_entry().send_keys('demo')
 
@@ -48,12 +50,14 @@ class TestOne(BaseClass):
 
         # Fetch new account number
         new_account_number = new_account_page.get_new_account_number().text
+        log.info(f"New account created: {new_account_number}")
 
         # Go to Transfer Funds page
         time.sleep(1)
         transfer_funds_page = new_account_page.transfer_funds()
         time.sleep(1)
         # Transfer funds ($50)
+        log.info("Transferring $50 from new account")
         transfer_funds_page.input_transfer_amount().send_keys(50)
 
         # Transfer funds from newly created account
@@ -64,7 +68,9 @@ class TestOne(BaseClass):
 
         # Transfer confirmation message
         time.sleep(30)
+        log.info("Checking for successful transfer")
         assert transfer_funds_page.transfer_confirmation_message().text == 'Transfer Complete!'
 
         # Logout
+        log.info("Logging out")
         transfer_funds_page.logout().click()
