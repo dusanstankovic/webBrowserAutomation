@@ -1,0 +1,10 @@
+2022-07-21 17:02:53,605 :INFO : test_end2end :Entering credentials
+2022-07-21 17:02:56,847 :INFO : test_end2end :New account created: 14898
+2022-07-21 17:02:59,149 :INFO : test_end2end :Transferring $50 from new account
+2022-07-21 17:03:06,286 :INFO : test_end2end :Checking for successful transfer
+2022-07-21 17:03:06,313 :INFO : test_end2end :Logging out
+2022-07-21 17:07:53,560 :INFO : test_end2end :Entering credentials
+2022-07-21 17:07:56,901 :INFO : test_end2end :New account created: 15120
+2022-07-21 17:07:59,220 :INFO : test_end2end :Transferring $50 from new account
+2022-07-21 17:08:06,359 :INFO : test_end2end :Checking for successful transfer
+2022-07-21 17:08:06,380 :INFO : test_end2end :Logging out

@@ -67,7 +67,7 @@ class TestOne(BaseClass):
         time.sleep(1)
 
         # Transfer confirmation message
-        time.sleep(30)
+        time.sleep(5)
         log.info("Checking for successful transfer")
         assert transfer_funds_page.transfer_confirmation_message().text == 'Transfer Complete!'
 
